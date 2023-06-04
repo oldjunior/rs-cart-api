@@ -1,0 +1,18 @@
+service: cart-service
+
+provider:
+  name: aws
+  region: eu-west-1
+  runtime: nodejs16.x
+  stage: dev
+
+functions:
+  main:
+    handler: dist/main.handler
+    events:
+      - http:
+          method: ANY
+          path: /
+      - http:
+          method: ANY
+          path: '{proxy+}'
